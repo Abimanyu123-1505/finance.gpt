@@ -46,6 +46,9 @@ class StrategyAgent {
         // This would normally run your RL simulation
         // Here's a mock implementation
         
+        // Get current market data for the ticker
+        const marketData = await fetchMarketData(ticker);
+        
         const strategies = {
             momentum: {
                 name: 'Momentum Strategy',

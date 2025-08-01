@@ -14,10 +14,18 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from client directory
+app.use(express.static('client'));
+
 // Initialize agents
 const newsAgent = new NewsAgent();
 const summarizerAgent = new SummarizerAgent();
 const strategyAgent = new StrategyAgent();
+
+// Serve main page
+app.get('/', (req, res) => {
+    res.sendFile('index.html', { root: 'client' });
+});
 
 // API Routes
 app.get('/api/news', async (req, res) => {
