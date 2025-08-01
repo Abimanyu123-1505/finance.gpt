@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestSmart AI - Intelligent Stock Investment Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h1><i class="fas fa-chart-line"></i> InvestSmart AI</h1>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#dashboard" class="nav-link active" data-section="dashboard">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a></li>
+            <li><a href="#analysis" class="nav-link" data-section="analysis">
+                <i class="fas fa-search"></i> Stock Analysis
+            </a></li>
+            <li><a href="#suggestions" class="nav-link" data-section="suggestions">
+                <i class="fas fa-lightbulb"></i> AI Suggestions
+            </a></li>
+            <li><a href="#portfolio" class="nav-link" data-section="portfolio">
+                <i class="fas fa-briefcase"></i> Portfolio
+            </a></li>
+            <li><a href="#screener" class="nav-link" data-section="screener">
+                <i class="fas fa-filter"></i> Stock Screener
+            </a></li>
+            <li><a href="#education" class="nav-link" data-section="education">
+                <i class="fas fa-graduation-cap"></i> Learn
+            </a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+                <div class="market-status">
+                    <span class="status-indicator live"></span>
+                    <span>Market Open</span>
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="search-container">
+                    <input type="text" id="global-search" placeholder="Search stocks, ETFs, or companies...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="market-summary">
+                    <div class="index-item">
+                        <span>S&P 500</span>
+                        <span class="positive">+0.5%</span>
+                    </div>
+                    <div class="index-item">
+                        <span>NASDAQ</span>
+                        <span class="negative">-0.2%</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active">
+            <div class="section-header">
+                <h2>Investment Dashboard</h2>
+                <div class="header-actions">
+                    <button class="btn btn-primary" id="refresh-data">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Market Overview Cards -->
+                <div class="card market-overview">
+                    <h3><i class="fas fa-globe"></i> Market Overview</h3>
+                    <div class="overview-grid">
+                        <div class="overview-item">
+                            <span class="label">Fear & Greed Index</span>
+                            <span class="value neutral">52 (Neutral)</span>
+                        </div>
+                        <div class="overview-item">
+                            <span class="label">VIX</span>
+                            <span class="value">18.5</span>
+                        </div>
+                        <div class="overview-item">
+                            <span class="label">10Y Treasury</span>
+                            <span class="value">4.2%</span>
+                        </div>
+                        <div class="overview-item">
+                            <span class="label">USD Index</span>
+                            <span class="value">103.4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Gainers/Losers -->
+                <div class="card movers">
+                    <h3><i class="fas fa-arrow-trend-up"></i> Market Movers</h3>
+                    <div class="movers-tabs">
+                        <button class="tab-btn active" data-tab="gainers">Top Gainers</button>
+                        <button class="tab-btn" data-tab="losers">Top Losers</button>
+                    </div>
+                    <div class="movers-content" id="gainers">
+                        <div class="mover-item">
+                            <span class="symbol">NVDA</span>
+                            <span class="price">$875.20</span>
+                            <span class="change positive">+5.2%</span>
+                        </div>
+                        <div class="mover-item">
+                            <span class="symbol">AMD</span>
+                            <span class="price">$142.50</span>
+                            <span class="change positive">+3.8%</span>
+                        </div>
+                        <div class="mover-item">
+                            <span class="symbol">TSLA</span>
+                            <span class="price">$248.90</span>
+                            <span class="change positive">+2.1%</span>
+                        </div>
+                    </div>
+                    <div class="movers-content hidden" id="losers">
+                        <div class="mover-item">
+                            <span class="symbol">NFLX</span>
+                            <span class="price">$445.30</span>
+                            <span class="change negative">-2.8%</span>
+                        </div>
+                        <div class="mover-item">
+                            <span class="symbol">PYPL</span>
+                            <span class="price">$58.75</span>
+                            <span class="change negative">-1.9%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Insights -->
+                <div class="card ai-insights">
+                    <h3><i class="fas fa-robot"></i> AI Market Insights</h3>
+                    <div class="insight-item">
+                        <div class="insight-header">
+                            <span class="insight-type">Bullish Signal</span>
+                            <span class="confidence">85%</span>
+                        </div>
+                        <p>Technology sector showing strong momentum with AI stocks leading gains</p>
+                    </div>
+                    <div class="insight-item">
+                        <div class="insight-header">
+                            <span class="insight-type">Risk Alert</span>
+                            <span class="confidence">70%</span>
+                        </div>
+                        <p>High correlation detected in growth stocks - consider diversification</p>
+                    </div>
+                </div>
+
+                <!-- Watchlist -->
+                <div class="card watchlist">
+                    <h3><i class="fas fa-eye"></i> Watchlist</h3>
+                    <div class="watchlist-controls">
+                        <input type="text" id="add-symbol" placeholder="Add symbol...">
+                        <button class="btn-icon" id="add-to-watchlist">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="watchlist-items" id="watchlist-container">
+                        <div class="watchlist-item">
+                            <span class="symbol">AAPL</span>
+                            <span class="price">$192.50</span>
+                            <span class="change positive">+1.2%</span>
+                            <button class="remove-btn"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="watchlist-item">
+                            <span class="symbol">MSFT</span>
+                            <span class="price">$415.80</span>
+                            <span class="change negative">-0.5%</span>
+                            <button class="remove-btn"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stock Analysis Section -->
+        <section id="analysis" class="content-section">
+            <div class="section-header">
+                <h2>Stock Analysis</h2>
+                <div class="analysis-search">
+                    <input type="text" id="ticker-input" placeholder="Enter ticker (e.g. AAPL)">
+                    <button id="analyze-btn" class="btn btn-primary">Analyze</button>
+                </div>
+            </div>
+
+            <div class="analysis-grid">
+                <div class="card chart-panel">
+                    <h3><i class="fas fa-chart-line"></i> Price Chart</h3>
+                    <div class="chart-controls">
+                        <button class="time-btn active" data-period="1D">1D</button>
+                        <button class="time-btn" data-period="1W">1W</button>
+                        <button class="time-btn" data-period="1M">1M</button>
+                        <button class="time-btn" data-period="3M">3M</button>
+                        <button class="time-btn" data-period="1Y">1Y</button>
+                    </div>
+                    <canvas id="price-chart"></canvas>
+                </div>
+
+                <div class="card news-panel">
+                    <h3><i class="fas fa-newspaper"></i> Latest News</h3>
+                    <div class="news-container" id="news-container">
+                        <div class="loading">Loading news...</div>
+                    </div>
+                </div>
+
+                <div class="card analysis-panel">
+                    <h3><i class="fas fa-chart-bar"></i> Technical Analysis</h3>
+                    <div class="analysis-container" id="analysis-container">
+                        <div class="loading">Analyzing market data...</div>
+                    </div>
+                </div>
+
+                <div class="card fundamentals-panel">
+                    <h3><i class="fas fa-calculator"></i> Key Metrics</h3>
+                    <div class="fundamentals-container" id="fundamentals-container">
+                        <div class="metric-row">
+                            <span class="metric-label">P/E Ratio</span>
+                            <span class="metric-value">--</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Market Cap</span>
+                            <span class="metric-value">--</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">52W High</span>
+                            <span class="metric-value">--</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">52W Low</span>
+                            <span class="metric-value">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Suggestions Section -->
+        <section id="suggestions" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-lightbulb"></i> AI Investment Suggestions</h2>
+                <div class="suggestion-filters">
+                    <select id="risk-level">
+                        <option value="all">All Risk Levels</option>
+                        <option value="conservative">Conservative</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="aggressive">Aggressive</option>
+                    </select>
+                    <select id="investment-term">
+                        <option value="all">All Terms</option>
+                        <option value="short">Short-term (< 1 year)</option>
+                        <option value="medium">Medium-term (1-5 years)</option>
+                        <option value="long">Long-term (5+ years)</option>
+                    </select>
+                    <button class="btn btn-primary" id="generate-suggestions">Generate Suggestions</button>
+                </div>
+            </div>
+
+            <div class="suggestions-grid">
+                <div class="card strategy-recommendations">
+                    <h3><i class="fas fa-chess"></i> Strategy Recommendations</h3>
+                    <div class="strategy-container" id="strategy-container">
+                        <div class="loading">Generating personalized strategies...</div>
+                    </div>
+                </div>
+
+                <div class="card sector-analysis">
+                    <h3><i class="fas fa-industry"></i> Sector Analysis</h3>
+                    <div class="sector-container" id="sector-container">
+                        <div class="sector-item">
+                            <div class="sector-header">
+                                <span class="sector-name">Technology</span>
+                                <span class="sector-rating bullish">Bullish</span>
+                            </div>
+                            <p>AI and cloud computing driving growth. Strong fundamentals across major players.</p>
+                        </div>
+                        <div class="sector-item">
+                            <div class="sector-header">
+                                <span class="sector-name">Healthcare</span>
+                                <span class="sector-rating neutral">Neutral</span>
+                            </div>
+                            <p>Mixed signals with biotech outperforming traditional pharma.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card stock-picks">
+                    <h3><i class="fas fa-star"></i> AI Stock Picks</h3>
+                    <div class="picks-container" id="picks-container">
+                        <div class="stock-pick">
+                            <div class="pick-header">
+                                <span class="symbol">MSFT</span>
+                                <span class="rating buy">Strong Buy</span>
+                                <span class="confidence">92%</span>
+                            </div>
+                            <div class="pick-details">
+                                <p>Target: $450 (+8.3%)</p>
+                                <p>AI leadership, cloud growth, strong financials</p>
+                            </div>
+                        </div>
+                        <div class="stock-pick">
+                            <div class="pick-header">
+                                <span class="symbol">NVDA</span>
+                                <span class="rating buy">Buy</span>
+                                <span class="confidence">88%</span>
+                            </div>
+                            <div class="pick-details">
+                                <p>Target: $950 (+8.5%)</p>
+                                <p>AI chip dominance, data center growth</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card risk-analysis">
+                    <h3><i class="fas fa-shield-alt"></i> Portfolio Risk Analysis</h3>
+                    <div class="risk-container" id="risk-container">
+                        <div class="risk-metric">
+                            <span class="risk-label">Overall Risk Score</span>
+                            <div class="risk-bar">
+                                <div class="risk-fill" style="width: 65%;"></div>
+                            </div>
+                            <span class="risk-value">6.5/10</span>
+                        </div>
+                        <div class="risk-recommendations">
+                            <h4>Risk Mitigation Suggestions:</h4>
+                            <ul>
+                                <li>Consider adding defensive stocks (utilities, consumer staples)</li>
+                                <li>Diversify across international markets</li>
+                                <li>Add fixed-income instruments for stability</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-briefcase"></i> Portfolio Management</h2>
+                <button class="btn btn-primary" id="add-position">Add Position</button>
+            </div>
+
+            <div class="portfolio-summary">
+                <div class="summary-card">
+                    <h4>Total Value</h4>
+                    <span class="value">$127,450</span>
+                    <span class="change positive">+$2,340 (+1.87%)</span>
+                </div>
+                <div class="summary-card">
+                    <h4>Day's Gain/Loss</h4>
+                    <span class="value positive">+$890</span>
+                    <span class="change positive">+0.70%</span>
+                </div>
+                <div class="summary-card">
+                    <h4>Total Gain/Loss</h4>
+                    <span class="value positive">+$15,670</span>
+                    <span class="change positive">+14.02%</span>
+                </div>
+            </div>
+
+            <div class="portfolio-content">
+                <div class="card holdings">
+                    <h3>Holdings</h3>
+                    <div class="holdings-table" id="holdings-table">
+                        <div class="table-header">
+                            <span>Symbol</span>
+                            <span>Shares</span>
+                            <span>Price</span>
+                            <span>Value</span>
+                            <span>Gain/Loss</span>
+                            <span>Actions</span>
+                        </div>
+                        <div class="holding-row">
+                            <span class="symbol">AAPL</span>
+                            <span>100</span>
+                            <span>$192.50</span>
+                            <span>$19,250</span>
+                            <span class="positive">+$1,250 (+6.9%)</span>
+                            <span><button class="btn-small">Sell</button></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card allocation">
+                    <h3>Asset Allocation</h3>
+                    <canvas id="allocation-chart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stock Screener Section -->
+        <section id="screener" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-filter"></i> Stock Screener</h2>
+                <button class="btn btn-primary" id="run-screen">Run Screen</button>
+            </div>
+
+            <div class="screener-filters">
+                <div class="filter-group">
+                    <label>Market Cap</label>
+                    <select id="market-cap-filter">
+                        <option value="all">All</option>
+                        <option value="large">Large (>$10B)</option>
+                        <option value="mid">Mid ($2B-$10B)</option>
+                        <option value="small">Small (<$2B)</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Sector</label>
+                    <select id="sector-filter">
+                        <option value="all">All Sectors</option>
+                        <option value="technology">Technology</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="finance">Finance</option>
+                        <option value="energy">Energy</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>P/E Ratio</label>
+                    <input type="range" id="pe-ratio" min="0" max="50" value="25">
+                    <span id="pe-value">0-25</span>
+                </div>
+            </div>
+
+            <div class="screener-results" id="screener-results">
+                <div class="results-table">
+                    <div class="table-header">
+                        <span>Symbol</span>
+                        <span>Name</span>
+                        <span>Price</span>
+                        <span>Change</span>
+                        <span>Volume</span>
+                        <span>Market Cap</span>
+                        <span>P/E</span>
+                    </div>
+                    <!-- Results will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-graduation-cap"></i> Investment Education</h2>
+            </div>
+
+            <div class="education-grid">
+                <div class="card education-module">
+                    <h3>Beginner's Guide</h3>
+                    <div class="module-content">
+                        <div class="lesson">
+                            <i class="fas fa-play-circle"></i>
+                            <span>What is Stock Investing?</span>
+                        </div>
+                        <div class="lesson">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Understanding Risk vs. Return</span>
+                        </div>
+                        <div class="lesson">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Building Your First Portfolio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card education-module">
+                    <h3>Technical Analysis</h3>
+                    <div class="module-content">
+                        <div class="lesson">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Reading Stock Charts</span>
+                        </div>
+                        <div class="lesson">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Support and Resistance</span>
+                        </div>
+                        <div class="lesson">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Moving Averages</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card market-glossary">
+                    <h3>Market Glossary</h3>
+                    <div class="glossary-content">
+                        <div class="glossary-item">
+                            <strong>Bull Market:</strong> A market condition where prices are rising and investor confidence is high.
+                        </div>
+                        <div class="glossary-item">
+                            <strong>Bear Market:</strong> A market condition where prices are falling by 20% or more.
+                        </div>
+                        <div class="glossary-item">
+                            <strong>P/E Ratio:</strong> Price-to-earnings ratio, a valuation metric comparing stock price to earnings per share.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulation Section -->
+        <section class="simulation-section">
+            <h2>Strategy Simulation</h2>
+            <div class="simulation-controls">
+                <select id="strategy-select">
+                    <option value="momentum">Momentum Strategy</option>
+                    <option value="mean_reversion">Mean Reversion</option>
+                    <option value="ml_strategy">ML-Based Strategy</option>
+                    <option value="dividend_growth">Dividend Growth</option>
+                    <option value="value_investing">Value Investing</option>
+                </select>
+                <button id="run-simulation" class="btn btn-success">Run Simulation</button>
+            </div>
+            <div class="simulation-results" id="simulation-results"></div>
+        </section>
+    </main>
+
+    <!-- Add Position Modal -->
+    <div id="add-position-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Add New Position</h3>
+            <form id="add-position-form">
+                <div class="form-group">
+                    <label for="position-symbol">Symbol</label>
+                    <input type="text" id="position-symbol" required>
+                </div>
+                <div class="form-group">
+                    <label for="position-shares">Shares</label>
+                    <input type="number" id="position-shares" required>
+                </div>
+                <div class="form-group">
+                    <label for="position-price">Purchase Price</label>
+                    <input type="number" id="position-price" step="0.01" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Position</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

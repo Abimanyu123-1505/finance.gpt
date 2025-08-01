@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const { NewsAgent } = require('./agents/newsAgent');
 const { SummarizerAgent } = require('./agents/summarizer');
 const { StrategyAgent } = require('./agents/strategy');
@@ -12,8 +13,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: process.env.NODE_ENV === 'production' ? true : ['http://localhost:8080', 'http://localhost:3000'],
+    credentials: true
+}));
 app.use(express.json());
+
+// Serve static files in production
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('public'));
+}
 
 // Initialize agents
 const newsAgent = new NewsAgent();
@@ -287,10 +296,22 @@ app.use((err, req, res, next) => {
     });
 });
 
-// 404 handler
-app.use((req, res) => {
-    res.status(404).json({ error: 'Endpoint not found' });
-});
+// Catch-all handler for SPA routing in production
+if (process.env.NODE_ENV === 'production') {
+    app.get('*', (req, res) => {
+        // If it's an API request, return 404
+        if (req.path.startsWith('/api/')) {
+            return res.status(404).json({ error: 'Endpoint not found' });
+        }
+        // Otherwise serve the frontend app
+        res.sendFile(path.join(__dirname, '../public/index.html'));
+    });
+} else {
+    // 404 handler for development
+    app.use((req, res) => {
+        res.status(404).json({ error: 'Endpoint not found' });
+    });
+}
 
 // Start server
 app.listen(PORT, () => {
