@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: investsmart-ai
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: ALPHA_VANTAGE_API_KEY
+        value: demo
+      - key: PINECONE_API_KEY
+        value: demo
+      - key: ENABLE_AI_SUGGESTIONS
+        value: true
+      - key: MOCK_DATA_MODE
+        value: true
+    healthCheckPath: /api/health
+    autoDeploy: true
