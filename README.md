@@ -93,12 +93,13 @@ InvestSmart AI Platform
 
 4. **Start the application**
    ```bash
-   # Development mode (starts both server and client)
-   npm run dev:full
+   # Easy start (recommended) - starts both server and client
+   ./start.sh
    
    # Or start individually
-   npm run dev      # Server only
-   npm run client   # Client only
+   npm start        # Server only (production)
+   npm run dev      # Server only (development)
+   npm run client   # Client only (in separate terminal)
    ```
 
 5. **Access the application**

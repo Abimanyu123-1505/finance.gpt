@@ -7,10 +7,8 @@
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
     "client": "cd client && live-server --port=8080 --open=/",
-    "dev:full": "concurrently \"npm run dev\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Build process - copy client files to dist\"",
-    "setup": "npm install && echo \"Setup complete! Run 'npm run dev:full' to start development\""
+    "setup": "npm install && echo \"Setup complete! Run 'npm run dev' and 'npm run client' in separate terminals\""
   },
   "keywords": [
     "stock-analysis",
@@ -27,25 +25,14 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "pinecone-client": "^1.1.0",
-    "node-cron": "^3.0.3",
-    "winston": "^3.11.0"
+    "pinecone-client": "^1.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.2",
-    "live-server": "^1.2.2",
-    "concurrently": "^8.2.2"
+    "live-server": "^1.2.2"
   },
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=8.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/investsmart-ai/platform.git"
-  },
-  "bugs": {
-    "url": "https://github.com/investsmart-ai/platform/issues"
-  },
-  "homepage": "https://github.com/investsmart-ai/platform#readme"
+  }
 }

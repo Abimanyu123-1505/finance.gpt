@@ -383,13 +383,23 @@ async function analyzeTicker(ticker) {
 }
 
 async function generateStockSuggestions() {
-    const riskLevel = document.getElementById('risk-level').value;
-    const investmentTerm = document.getElementById('investment-term').value;
+    const riskLevelEl = document.getElementById('risk-level');
+    const investmentTermEl = document.getElementById('investment-term');
+    
+    const riskLevel = riskLevelEl ? riskLevelEl.value : 'moderate';
+    const investmentTerm = investmentTermEl ? investmentTermEl.value : 'medium';
 
     try {
         // Show loading state
-        document.getElementById('strategy-container').innerHTML = '<div class="loading">Generating personalized strategies...</div>';
-        document.getElementById('picks-container').innerHTML = '<div class="loading">Analyzing stocks...</div>';
+        const strategyContainer = document.getElementById('strategy-container');
+        const picksContainer = document.getElementById('picks-container');
+        
+        if (strategyContainer) {
+            strategyContainer.innerHTML = '<div class="loading">Generating personalized strategies...</div>';
+        }
+        if (picksContainer) {
+            picksContainer.innerHTML = '<div class="loading">Analyzing stocks...</div>';
+        }
 
         // Fetch suggestions based on filters
         const suggestions = await fetchStockSuggestions(riskLevel, investmentTerm);
@@ -424,7 +434,7 @@ async function runStockScreen() {
 // API functions
 async function fetchNews(ticker) {
     try {
-        const response = await fetch(`/api/news?ticker=${ticker}`);
+        const response = await fetch(`http://localhost:3000/api/news?ticker=${ticker}`);
         if (!response.ok) throw new Error('Failed to fetch news');
         return await response.json();
     } catch (error) {
@@ -435,7 +445,7 @@ async function fetchNews(ticker) {
 
 async function fetchAnalysis(ticker) {
     try {
-        const response = await fetch(`/api/analyze?ticker=${ticker}`);
+        const response = await fetch(`http://localhost:3000/api/analyze?ticker=${ticker}`);
         if (!response.ok) throw new Error('Failed to fetch analysis');
         return await response.json();
     } catch (error) {
@@ -446,7 +456,7 @@ async function fetchAnalysis(ticker) {
 
 async function fetchStrategy(ticker) {
     try {
-        const response = await fetch(`/api/strategy?ticker=${ticker}`);
+        const response = await fetch(`http://localhost:3000/api/strategy?ticker=${ticker}`);
         if (!response.ok) throw new Error('Failed to fetch strategy');
         return await response.json();
     } catch (error) {
@@ -457,7 +467,7 @@ async function fetchStrategy(ticker) {
 
 async function fetchPriceData(ticker, period = '1M') {
     try {
-        const response = await fetch(`/api/prices?ticker=${ticker}&period=${period}`);
+        const response = await fetch(`http://localhost:3000/api/prices?ticker=${ticker}&period=${period}`);
         if (!response.ok) throw new Error('Failed to fetch price data');
         return await response.json();
     } catch (error) {
@@ -468,7 +478,7 @@ async function fetchPriceData(ticker, period = '1M') {
 
 async function fetchFundamentals(ticker) {
     try {
-        const response = await fetch(`/api/fundamentals?ticker=${ticker}`);
+        const response = await fetch(`http://localhost:3000/api/fundamentals?ticker=${ticker}`);
         if (!response.ok) throw new Error('Failed to fetch fundamentals');
         return await response.json();
     } catch (error) {
@@ -479,7 +489,7 @@ async function fetchFundamentals(ticker) {
 
 async function fetchStockSuggestions(riskLevel, investmentTerm) {
     try {
-        const response = await fetch(`/api/suggestions?risk=${riskLevel}&term=${investmentTerm}`);
+        const response = await fetch(`http://localhost:3000/api/suggestions?risk=${riskLevel}&term=${investmentTerm}`);
         if (!response.ok) throw new Error('Failed to fetch suggestions');
         return await response.json();
     } catch (error) {
@@ -491,7 +501,7 @@ async function fetchStockSuggestions(riskLevel, investmentTerm) {
 async function fetchScreenerResults(filters) {
     try {
         const params = new URLSearchParams(filters);
-        const response = await fetch(`/api/screener?${params}`);
+        const response = await fetch(`http://localhost:3000/api/screener?${params}`);
         if (!response.ok) throw new Error('Failed to fetch screener results');
         return await response.json();
     } catch (error) {

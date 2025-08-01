@@ -324,8 +324,8 @@ class StockSuggestionsAgent {
             const cached = this.getCached(cacheKey);
             if (cached) return cached;
 
-            // This would fetch real fundamental data
-            const fundamentals = await this.fetchFundamentalData(ticker);
+            // Always return mock data for demo purposes
+            const fundamentals = this.getMockFundamentals(ticker);
             
             this.setCache(cacheKey, fundamentals);
             return fundamentals;
