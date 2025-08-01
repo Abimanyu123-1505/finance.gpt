@@ -1,23 +1,51 @@
 {
-  "name": "finance-gpt-agent",
-  "version": "1.0.0",
-  "description": "AI-powered Financial Research Platform",
+  "name": "investsmart-ai",
+  "version": "2.0.0",
+  "description": "AI-powered Stock Investment Platform with Intelligent Recommendations",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
-    "client": "cd client && live-server --port=8080",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client": "cd client && live-server --port=8080 --open=/",
+    "dev:full": "concurrently \"npm run dev\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Build process - copy client files to dist\"",
+    "setup": "npm install && echo \"Setup complete! Run 'npm run dev:full' to start development\""
   },
+  "keywords": [
+    "stock-analysis",
+    "investment-platform",
+    "ai-recommendations",
+    "financial-technology",
+    "portfolio-management",
+    "market-analysis"
+  ],
+  "author": "InvestSmart AI Team",
+  "license": "MIT",
   "dependencies": {
-    "axios": "^1.4.0",
+    "axios": "^1.6.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "pinecone-client": "^1.0.0"
+    "pinecone-client": "^1.1.0",
+    "node-cron": "^3.0.3",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1",
-    "live-server": "^1.2.2"
-  }
+    "nodemon": "^3.0.2",
+    "live-server": "^1.2.2",
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/investsmart-ai/platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/investsmart-ai/platform/issues"
+  },
+  "homepage": "https://github.com/investsmart-ai/platform#readme"
 }
