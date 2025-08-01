@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance GPT Agent - AI Financial Researcher</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Finance GPT Agent</h1>
+            <p class="tagline">AI-powered Financial Research & Strategy Platform</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="dashboard">
+            <div class="dashboard-header">
+                <h2>Market Intelligence Dashboard</h2>
+                <div class="ticker-search">
+                    <input type="text" id="ticker-input" placeholder="Enter ticker (e.g. AAPL)">
+                    <button id="analyze-btn">Analyze</button>
+                </div>
+            </div>
+            
+            <div class="dashboard-content">
+                <div class="panel news-panel">
+                    <h3><i class="fas fa-newspaper"></i> Financial News</h3>
+                    <div class="news-container" id="news-container"></div>
+                </div>
+                
+                <div class="panel analysis-panel">
+                    <h3><i class="fas fa-chart-line"></i> Market Analysis</h3>
+                    <div class="analysis-container" id="analysis-container"></div>
+                </div>
+                
+                <div class="panel strategy-panel">
+                    <h3><i class="fas fa-chess"></i> Strategy Suggestions</h3>
+                    <div class="strategy-container" id="strategy-container"></div>
+                </div>
+                
+                <div class="panel chart-panel">
+                    <h3><i class="fas fa-chart-bar"></i> Price Chart</h3>
+                    <canvas id="price-chart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section class="rl-section">
+            <h2>Strategy Simulation</h2>
+            <div class="simulation-controls">
+                <select id="strategy-select">
+                    <option value="momentum">Momentum Strategy</option>
+                    <option value="mean_reversion">Mean Reversion</option>
+                    <option value="ml_strategy">ML-Based Strategy</option>
+                </select>
+                <button id="run-simulation">Run Simulation</button>
+            </div>
+            <div class="simulation-results" id="simulation-results"></div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Finance GPT Agent. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
